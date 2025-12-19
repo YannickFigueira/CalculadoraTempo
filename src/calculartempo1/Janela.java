@@ -311,6 +311,7 @@ public class Janela extends Componentes {
                         for (String montar1 : montar) {
                             tex += montar1;
                         }
+                        System.out.println(tex + " Ver");
                         break;
                     case 6:
                         for (int i = 0; i < montar.length; i++) {
@@ -502,19 +503,27 @@ public class Janela extends Componentes {
 
     public void registrar() {
         String[] separarTempo = this.txtTempo.getText().split(":");
-
+        
         switch (separarTempo.length) {
             case 1:
+                if(separarTempo[0].isEmpty()){
+                    break;
+                }
                 if(Integer.parseInt(separarTempo[0]) < 10){
                     separarTempo[0] = "0" + separarTempo[0];
                 }
                 registro = "00:" + separarTempo[0];
+                //System.out.println(registro);
                 break;
             case 2:
                 if(Integer.parseInt(separarTempo[0]) < 10){
                     separarTempo[0] = "0" + Integer.parseInt(separarTempo[0]);
                 }
+                if(Integer.parseInt(separarTempo[1]) == 10){
+                    separarTempo[1] = "10";
+                }
                 registro = separarTempo[0] + ":" + separarTempo[1];
+                //System.out.println(registro);
                 break;
             case 3:
                 registro += separarTempo[2];
@@ -534,16 +543,24 @@ public class Janela extends Componentes {
     public void resultado() {
         switch (sinal) {
             case 1:
-                resultado = dividir(this.txtTempo.getText());
+                if(!this.txtTempo.getText().isEmpty()){
+                    resultado = dividir(this.txtTempo.getText());
+                }
                 break;
             case 2:
-                resultado = multiplicar(this.txtTempo.getText());
+                if(!this.txtTempo.getText().isEmpty()){
+                    resultado = multiplicar(this.txtTempo.getText());
+                }
                 break;
             case 3:
-                resultado = subtrair(this.txtTempo.getText());
+                if(!this.txtTempo.getText().isEmpty()){
+                    resultado = subtrair(this.txtTempo.getText());
+                }
                 break;
             case 4:
-                resultado = somar(this.txtTempo.getText());
+                if(!this.txtTempo.getText().isEmpty()){
+                    resultado = somar(this.txtTempo.getText());
+                }
                 break;
             case 5:
                 //resultado = 0 - this.TEMPO_EXTRA;
